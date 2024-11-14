@@ -1,0 +1,36 @@
+<!-- product_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ product.name }} - Comparison</title>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <h2>Price Comparison</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Store</th>
+                <th>Price</th>
+                <th>Location</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for price in prices %}
+                <tr>
+                    <td>{{ price.store.name }}</td>
+                    <td>${{ price.price }}</td>
+                    <td>{{ price.location }}</td>
+                    <td>{{ price.availability_date }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No prices available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

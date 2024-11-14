@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grocery Search</title>
+</head>
+<body>
+    <h1>Search Groceries</h1>
+    <form method="get" action="{% url 'product_search' %}">
+        <input type="text" name="query" placeholder="Search products...">
+        <input type="number" name="max_price" placeholder="Max price">
+        <input type="text" name="location" placeholder="Location">
+        <input type="datetime-local" name="time_filter" placeholder="Available After">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Search Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Store</th>
+                <th>Price</th>
+                <th>Location</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for price in prices %}
+                <tr>
+                    <td>{{ price.product.name }}</td>
+                    <td>{{ price.store.name }}</td>
+                    <td>${{ price.price }}</td>
+                    <td>{{ price.location }}</td>
+                    <td>{{ price.availability_date }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No results found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
