@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Grocery Search</title>
-</head>
-<body>
+<!-- product_search.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Grocery Search{% endblock %}
+
+{% block content %}
     <h1>Search Groceries</h1>
     <form method="get" action="{% url 'product_search' %}">
         <input type="text" name="query" placeholder="Search products...">
@@ -40,5 +41,22 @@
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+
+    <!-- Optional pagination section -->
+    {% if prices.has_other_pages %}
+    <div class="pagination">
+        <span>
+            Page {{ prices.number }} of {{ prices.paginator.num_pages }}
+        </span>
+        <div>
+            {% if prices.has_previous %}
+                <a href="?{% if query %}query={{ query }}&{% endif %}page={{ prices.previous_page_number }}">Previous</a>
+            {% endif %}
+            {% if prices.has_next %}
+                <a href="?{% if query %}query={{ query }}&{% endif %}page={{ prices.next_page_number }}">Next</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+

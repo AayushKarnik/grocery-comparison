@@ -1,12 +1,13 @@
 <!-- product_detail.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{ product.name }} - Comparison</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} - Comparison{% endblock %}
+
+{% block content %}
     <h1>{{ product.name }}</h1>
     <p>{{ product.description }}</p>
+
     <h2>Price Comparison</h2>
     <table>
         <thead>
@@ -32,5 +33,4 @@
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}

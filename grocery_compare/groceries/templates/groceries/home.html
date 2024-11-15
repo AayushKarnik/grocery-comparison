@@ -1,32 +1,25 @@
 <!-- home.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Grocery Comparison Home</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+
+{% block title %}Grocery Comparison Home{% endblock %}
+
+{% block content %}
+{% load static %}
     <h1>Welcome to Grocery Comparison</h1>
+    <p>Use the search bar to find the best grocery deals near you.</p>
+
+    <!-- Search Form -->
     <form method="get" action="{% url 'product_search' %}">
         <input type="text" name="query" placeholder="Search products...">
         <button type="submit">Search</button>
     </form>
+
+    <!-- Featured Stores -->
     <h2>Featured Stores</h2>
     <ul>
         {% for store in featured_stores %}
             <li>{{ store.name }}</li>
         {% endfor %}
     </ul>
-</body>
-</html>
-
-<!-- groceries/templates/groceries/home.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Grocery Comparison Home</title>
-</head>
-<body>
-    <h1>Welcome to Grocery Comparison</h1>
-    <p>Use the search bar to find the best grocery deals near you.</p>
-</body>
-</html>
+{% endblock %}
